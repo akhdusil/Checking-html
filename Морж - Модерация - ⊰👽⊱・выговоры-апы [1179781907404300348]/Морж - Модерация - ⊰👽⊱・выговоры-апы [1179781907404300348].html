@@ -1,0 +1,3086 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Морж - ⊰&#128125;⊱・выговоры-апы</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.325em;
+    height: 1.325em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+    pointer-events: none;
+}
+
+.chatlog__reference-content > a:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > .emoji {
+    width: 1.325em;
+    height: 1.325em;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    vertical-align: middle;
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__embed-youtube-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-youtube {
+    border: 0;
+    border-radius: 3px;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #5865F2;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #00aff4;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* Preamble */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: #202225;
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: #dcddde;
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: #dcddde;
+}
+
+.chatlog__embed-footer {
+    color: #dcddde;
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_7ec01a9da6950a2c222d3afb6b110186-A489B.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Морж</div>
+        <div class="preamble__entry">Модерация / ⊰&#128125;⊱・выговоры-апы</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">30-Nov-23 05:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="1179783963154333756" id="message-1179783963154333756" title="Message sent: 30-Nov-23 05:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(119, 221, 221); background-color: rgba(119, 221, 221, 0.1);">@Модератор</span> Название раздела говорит все само за себя. У вас будет система выговоров и повышения. Я создам (возможно) роли на повышения за активность и тд. Скоро будут для вас правила и система повышения. Реакция = прочитали , поняли , уяснили</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_check_mark">
+                                <img class="emoji emoji--small" alt="✅" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/2705-75533.svg">
+                                <span class="chatlog__reaction-count">14</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">30-Nov-23 08:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="1179830958640337066" id="message-1179830958640337066" title="Message sent: 30-Nov-23 08:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="smoking.kills#0000">@читы</span> беседа, за то что нахуй бота послал</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">01-Dec-23 05:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="1180150136870031450" id="message-1180150136870031450" title="Message sent: 01-Dec-23 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="moderator1000078#0000">@moderator1000078</span> повышен до старшего администратора</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">01-Dec-23 08:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="1180196098460102738" id="message-1180196098460102738" title="Message sent: 01-Dec-23 08:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="soska23.#0000">@Банхамер</span> беседа по жалобе</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">03-Dec-23 11:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="1180789529926451260" id="message-1180789529926451260" title="Message sent: 03-Dec-23 11:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="soska23.#0000">@Банхамер</span> беседа по жалобе</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Dec-23 11:36 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">04-Dec-23 11:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="1181338464789200948" id="message-1181338464789200948" title="Message sent: 04-Dec-23 11:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="leafwall#0000">@Не Админ</span> устный (фулл афк)
+[1/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">09-Dec-23 01:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="1182985647062011904" id="message-1182985647062011904" title="Message sent: 09-Dec-23 01:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="soska23.#0000">@Банхамер</span> устный по жалобе 
+[1/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1182985725214478366" id="message-1182985725214478366" title="Message sent: 09-Dec-23 01:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="leafwall#0000">@Не Админ</span> устный снят (срок)
+[0/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">10-Dec-23 03:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="1183392106908233818" id="message-1183392106908233818" title="Message sent: 10-Dec-23 03:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="fozzyplay#0000">@Kazuya</span> устный (фулл афк)
+[1/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">11-Dec-23 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="1183837092380410029" id="message-1183837092380410029" title="Message sent: 11-Dec-23 09:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="theotheojjuu#0000">@Baklazhan</span> устный (фулл афк)
+[1/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1183838171092504647" id="message-1183838171092504647" title="Message sent: 11-Dec-23 09:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="soska23.#0000">@Банхамер</span> устный (фулл афк)
+[0/2 1/2]</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Dec-23 09:40 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1183838197868929126" id="message-1183838197868929126" title="Message sent: 11-Dec-23 09:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="smoking.kills#0000">@читы</span> устный (фулл афк)
+[1/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1183838462546280458" id="message-1183838462546280458" title="Message sent: 11-Dec-23 09:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="fireleetyoutube#0000">@ЕвГейний Фаерлитович</span> строгий (фулл афк)
+[0/2 1/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">11-Dec-23 09:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="1183841313326645419" id="message-1183841313326645419" title="Message sent: 11-Dec-23 09:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="soska23.#0000">@Банхамер</span> ПСЖ</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1183841899619029156" id="message-1183841899619029156" title="Message sent: 11-Dec-23 09:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="fozzyplay#0000">@Kazuya</span> <span class="mention" title="leafwall#0000">@Не Админ</span> Временно отстранены от должности администратора</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">13-Dec-23 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="1184543482853986387" id="message-1184543482853986387" title="Message sent: 13-Dec-23 08:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="moderator1000078#0000">@moderator1000078</span> Временно отстранен от должности администратора</span>
+
+                                <span class="chatlog__edited-timestamp" title="13-Dec-23 08:13 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">13-Dec-23 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="1184546184166133870" id="message-1184546184166133870" title="Message sent: 13-Dec-23 08:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="the_jigit#0000">@Мыхайло Мыхайлович</span>  повышен до старшего администратора</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">16-Dec-23 11:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="1185497389155495987" id="message-1185497389155495987" title="Message sent: 16-Dec-23 11:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="theadamsmashed#0000">@theadamsmashed</span> устный афк
+[1/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">16-Dec-23 08:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="1185642107436814407" id="message-1185642107436814407" title="Message sent: 16-Dec-23 08:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="theotheojjuu#0000">@Baklazhan</span> снят, афк</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">18-Dec-23 11:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="1186217521305628732" id="message-1186217521305628732" title="Message sent: 18-Dec-23 11:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="smoking.kills#0000">@читы</span> устный снят (срок)
+[0/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">18-Dec-23 12:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="1186234896897802342" id="message-1186234896897802342" title="Message sent: 18-Dec-23 12:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="fireleetyoutube#0000">@ЕвГейний Фаерлитович</span> Временно отстранен от должности администратора</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">18-Dec-23 05:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="1186321960091787326" id="message-1186321960091787326" title="Message sent: 18-Dec-23 05:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="mellvis#0000">@mellvis</span> +устный за афк
+[1/2 0/2]
+
+Задание на снятие: выдать 10 наказаний до 24/12/23</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">20-Dec-23 03:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="1187008140617719909" id="message-1187008140617719909" title="Message sent: 20-Dec-23 03:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="mr_frizz#0000">@Ежик</span> беседа по неправильно залитой опре</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">21-Dec-23 11:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="1187492977833160786" id="message-1187492977833160786" title="Message sent: 21-Dec-23 11:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="theadamsmashed#0000">@theadamsmashed</span>Снят, потому что не может подключить телефон</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">23-Dec-23 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="1188035616064155728" id="message-1188035616064155728" title="Message sent: 23-Dec-23 11:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="fireleetyoutube#0000">@ЕвГейний Фаерлитович</span> возвращен на пост администратора с условиями</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">23-Dec-23 12:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="1188058179951669298" id="message-1188058179951669298" title="Message sent: 23-Dec-23 12:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Deleted User#0000">@Deleted User</span> <span class="mention" title="frederickfox#0000">@frederickfox</span> повышены до старшей администрации</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">23-Dec-23 01:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="1188069222589415472" id="message-1188069222589415472" title="Message sent: 23-Dec-23 01:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="the_jigit#0000">@Мыхайло Мыхайлович</span> назначен на должность Заместителя Главного Администратора</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1f44d-B3F5F.svg">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">24-Dec-23 05:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="1188491665451790337" id="message-1188491665451790337" title="Message sent: 24-Dec-23 05:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Deleted User#0000">@Deleted User</span> ========= <span class="mention" title="_utils#0000">@_utils</span> аккаунты перенесены</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">24-Dec-23 06:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="1188510687299899432" id="message-1188510687299899432" title="Message sent: 24-Dec-23 06:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="dehydrator#0000">@премьер порн</span> +строгий за нарушение правил сервера
+ (1.11.4)  Флуд гифками (от 5 за 2 минуты подряд).
+
+[1/2 0/2] // заменено на устный</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Dec-23 07:11 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1188510758603075735" id="message-1188510758603075735" title="Message sent: 24-Dec-23 06:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="willieremboboss#0000">@willieremboboss</span> +строгий за поддержку флуда в чате
+
+[1/2 0/2] // заменено на устный</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Dec-23 07:11 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">25-Dec-23 05:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="1188854993973956689" id="message-1188854993973956689" title="Message sent: 25-Dec-23 05:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="mellvis#0000">@mellvis</span> устный снят (срок) + из афк выходи уже, если хочешь быть администратором
+[0/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1188855191978643527" id="message-1188855191978643527" title="Message sent: 25-Dec-23 05:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="smoking.kills#0000">@читы</span>строгий (фулл афк)
+[0/2 1/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">26-Dec-23 10:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="1189294865306099712" id="message-1189294865306099712" title="Message sent: 26-Dec-23 10:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="dehydrator#0000">@премьер порн</span> повышен до старшего администратора</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="TRAX">
+                                <img class="emoji emoji--small" alt="TRAX" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1138210181470240809-832FB.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">28-Dec-23 01:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="1189882950179885147" id="message-1189882950179885147" title="Message sent: 28-Dec-23 01:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">@wor4 снят</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="6_aaa">
+                                <img class="emoji emoji--small" alt="6_aaa" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1157959505204752454-96A30.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="1189883747475144735" id="message-1189883747475144735" title="Message sent: 28-Dec-23 01:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="fireleetyoutube#0000">@ЕвГейний Фаерлитович</span> снят (афк)</span>
+
+                                <span class="chatlog__edited-timestamp" title="28-Dec-23 01:53 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">30-Dec-23 05:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="1190665182238756906" id="message-1190665182238756906" title="Message sent: 30-Dec-23 05:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="dehydrator#0000">@премьер порн</span> беседа за игнор нарушения в чате</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">31-Dec-23 01:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="1190785960707891200" id="message-1190785960707891200" title="Message sent: 31-Dec-23 01:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="dehydrator#0000">@премьер порн</span>Назначен на должность технического администратора (ВРИО)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">01-Jan-24 12:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="1191318914005745714" id="message-1191318914005745714" title="Message sent: 01-Jan-24 12:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="smoking.kills#0000">@читы</span> ПСЖ</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">03-Jan-24 07:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="1192145279122677820" id="message-1192145279122677820" title="Message sent: 03-Jan-24 07:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="_utils#0000">@_utils</span> +1 строгий по жалобе
+[0/2][1/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="the_jigit#0000" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+                <div class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;1188510687299899432&#39;)">
+                    <span class="chatlog__reference-content">
+<span class="mention" title="dehydrator#0000">@премьер порн</span> +строгий за нарушение правил сервера
+ (1.11.4)  Флуд гифками (от 5 за 2 минуты подряд).
+
+[1/2 0/2] // заменено на устный                    </span>
+
+                        <span class="chatlog__reference-edited-timestamp" title="24-Dec-23 07:11 PM">(edited)</span>
+                </div>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-24 09:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="1192346880580010035" id="message-1192346880580010035" title="Message sent: 04-Jan-24 09:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="dehydrator#0000">@премьер порн</span> устный снят, срок
+[0/0][0/0]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="the_jigit#0000" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+                <div class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;1188510758603075735&#39;)">
+                    <span class="chatlog__reference-content">
+<span class="mention" title="willieremboboss#0000">@willieremboboss</span> +строгий за поддержку флуда в чате
+
+[1/2 0/2] // заменено на устный                    </span>
+
+                        <span class="chatlog__reference-edited-timestamp" title="24-Dec-23 07:11 PM">(edited)</span>
+                </div>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-24 09:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="1192346952524906626" id="message-1192346952524906626" title="Message sent: 04-Jan-24 09:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="willieremboboss#0000">@willieremboboss</span> устный снят, срок
+[0/0][0/0]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-24 06:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="1192482771701092442" id="message-1192482771701092442" title="Message sent: 04-Jan-24 06:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="the_jigit#0000">@Мыхайло Мыхайлович</span>устный по жалобе
+[1/2][0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">05-Jan-24 05:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="1192831118425215106" id="message-1192831118425215106" title="Message sent: 05-Jan-24 05:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="willieremboboss#0000">@willieremboboss</span> повышен до старшего модератора</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">06-Jan-24 09:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="1193254466443558975" id="message-1193254466443558975" title="Message sent: 06-Jan-24 09:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="jeff_0.0#0000">@jeff_0.0</span> поставлен</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1193254482587435069" id="message-1193254482587435069" title="Message sent: 06-Jan-24 09:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ndetected#0000">@ndetected</span> поставлен</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1193254500333523025" id="message-1193254500333523025" title="Message sent: 06-Jan-24 09:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="user_name9995#0000">@user_name9995</span> поставлен</span>
+
+                                <span class="chatlog__edited-timestamp" title="06-Jan-24 09:07 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1193254546034675842" id="message-1193254546034675842" title="Message sent: 06-Jan-24 09:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> поставлен</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">08-Jan-24 12:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="1193668859044044912" id="message-1193668859044044912" title="Message sent: 08-Jan-24 12:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="frederickfox#0000">@frederickfox</span> + устный за кик без причины
+[1/2][0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="kavo">
+                                <img class="emoji emoji--small" alt="kavo" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1072565342859169874-70865.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="5_pepe_b4">
+                                <img class="emoji emoji--small" alt="5_pepe_b4" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1025015039406641192-DB821.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">09-Jan-24 03:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="1194258837499301888" id="message-1194258837499301888" title="Message sent: 09-Jan-24 03:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="frederickfox#0000">@frederickfox</span>временно отстранен от должности модератора (ПСЖ)</span>
+
+                                <span class="chatlog__edited-timestamp" title="09-Jan-24 03:43 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-24 12:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="1194395852656103606" id="message-1194395852656103606" title="Message sent: 10-Jan-24 12:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="mellvis#0000">@mellvis</span> +1 строгий за инактив
+
+0 из 2 / 1 из 2</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-24 12:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="1194398412930564187" id="message-1194398412930564187" title="Message sent: 10-Jan-24 12:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="user_name9995#0000">@user_name9995</span> +1 строгий за шутки про батю
+
+1 из 2 / 0 из 2
+
+с первым предом <img class="emoji " alt="🥰" title="smiling_face_with_3_hearts" src="https://twemoji.maxcdn.com/2/svg/1f970.svg"> <img class="emoji " alt="🥰" title="smiling_face_with_3_hearts" src="https://twemoji.maxcdn.com/2/svg/1f970.svg"> <img class="emoji " alt="6_etomne" title="6_etomne" src="https://cdn.discordapp.com/emojis/1157959616307675248.png"> // устнвф</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-24 12:54 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-24 01:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="1194402221643792394" id="message-1194402221643792394" title="Message sent: 10-Jan-24 01:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(119, 221, 221); background-color: rgba(119, 221, 221, 0.1);">@Модератор</span> 
+<span class="mention" title="mellvis#0000">@mellvis</span> снят по собственному желанию. Удачи, ждем снова <img class="emoji " alt="😟" title="worried" src="https://twemoji.maxcdn.com/2/svg/1f61f.svg">.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="the_jigit#0000" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+                <div class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;1192145279122677820&#39;)">
+                    <span class="chatlog__reference-content">
+<span class="mention" title="_utils#0000">@_utils</span> +1 строгий по жалобе
+[0/2][1/2]                    </span>
+
+                </div>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-24 01:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="1194594422629879838" id="message-1194594422629879838" title="Message sent: 10-Jan-24 01:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="_utils#0000">@_utils</span> строгий снят, срок</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">11-Jan-24 11:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="1195099788727816353" id="message-1195099788727816353" title="Message sent: 11-Jan-24 11:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="the_jigit#0000">@Мыхайло Мыхайлович</span>Устный снят, срок
+[0/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup_tone5">
+                                <img class="emoji emoji--small" alt="&#128077;&#127999;" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1f44d-1f3ff-56749.svg">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="the_jigit#0000" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+                <div class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;1194398412930564187&#39;)">
+                    <span class="chatlog__reference-content">
+<span class="mention" title="user_name9995#0000">@user_name9995</span> +1 строгий за шутки про батю
+
+1 из 2 / 0 из 2
+
+с первым предом <img class="emoji " alt="🥰" title="smiling_face_with_3_hearts" src="https://twemoji.maxcdn.com/2/svg/1f970.svg"> <img class="emoji " alt="🥰" title="smiling_face_with_3_hearts" src="https://twemoji.maxcdn.com/2/svg/1f970.svg"> <img class="emoji " alt="6_etomne" title="6_etomne" src="https://cdn.discordapp.com/emojis/1157959616307675248.png"> // устнвф                    </span>
+
+                        <span class="chatlog__reference-edited-timestamp" title="10-Jan-24 12:54 AM">(edited)</span>
+                </div>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">16-Jan-24 05:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="1196819430370443355" id="message-1196819430370443355" title="Message sent: 16-Jan-24 05:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">устный снят срок</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1196819520963215380" id="message-1196819520963215380" title="Message sent: 16-Jan-24 05:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ndetected#0000">@ndetected</span> +устный за коллективный флуд
+
+1 из 2 / 0 из 2</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">21-Jan-24 02:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="1198593806652670024" id="message-1198593806652670024" title="Message sent: 21-Jan-24 02:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ndetected#0000">@ndetected</span> устный снят (срок)
+[0/2 0/2]</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="&#129782;">
+                                <img class="emoji emoji--small" alt="&#129782;" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1faf6-C790E.svg">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">22-Jan-24 12:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="1198927218072616970" id="message-1198927218072616970" title="Message sent: 22-Jan-24 12:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="user_name9995#0000">@user_name9995</span> повышен до старшего модератора <img class="emoji " alt="🥰" title="smiling_face_with_3_hearts" src="https://twemoji.maxcdn.com/2/svg/1f970.svg"> <img class="emoji " alt="pepe_kaif" title="pepe_kaif" src="https://cdn.discordapp.com/emojis/1193803111077269586.png"> <img class="emoji " alt="👍" title="thumbsup" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="4_heart">
+                                <img class="emoji emoji--small" alt="4_heart" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/984812366069891162-71B14.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="love_you_gesture">
+                                <img class="emoji emoji--small" alt="&#129311;" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1f91f-CE4BB.svg">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">28-Jan-24 05:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="1201172329334579211" id="message-1201172329334579211" title="Message sent: 28-Jan-24 05:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> устный за неактив</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">04-Feb-24 01:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="1203653923693531226" id="message-1203653923693531226" title="Message sent: 04-Feb-24 01:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> беседа по статусам предложений</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">04-Feb-24 02:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="1203659214418083941" id="message-1203659214418083941" title="Message sent: 04-Feb-24 02:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="jeff_0.0#0000">@jeff_0.0</span> + устный за неактив</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">05-Feb-24 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="1204064202591961159" id="message-1204064202591961159" title="Message sent: 05-Feb-24 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> -устный по купонам</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="6_aaa">
+                                <img class="emoji emoji--small" alt="6_aaa" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1157959505204752454-96A30.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">05-Feb-24 06:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="1204083047436132373" id="message-1204083047436132373" title="Message sent: 05-Feb-24 06:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="willieremboboss#0000">@willieremboboss</span> +1 строгий за мат в чате</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="5_pepe_6">
+                                <img class="emoji emoji--small" alt="5_pepe_6" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1025015019102027858-1C116.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">08-Feb-24 11:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="1205243617103577088" id="message-1205243617103577088" title="Message sent: 08-Feb-24 11:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> +1 устный!! за мат в чате</span>
+
+                                <span class="chatlog__edited-timestamp" title="08-Feb-24 11:08 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">10-Feb-24 02:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="1205837541606031361" id="message-1205837541606031361" title="Message sent: 10-Feb-24 02:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> <span class="mention" title="mr_frizz#0000">@Ежик</span> обоим по устному за игнор нарушения</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1205837581619822612" id="message-1205837581619822612" title="Message sent: 10-Feb-24 02:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> 2 устных =&gt; строгий</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="pensive">
+                                <img class="emoji emoji--small" alt="&#128532;" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1f614-E1CCC.svg">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">10-Feb-24 08:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="1205933559295254538" id="message-1205933559295254538" title="Message sent: 10-Feb-24 08:49 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ndetected#0000">@ndetected</span> беседа по жалобе</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">13-Feb-24 09:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="1206849483380625479" id="message-1206849483380625479" title="Message sent: 13-Feb-24 09:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="errarx29660#0000">@DeADA</span> ура беседа по рассмотрению предложений</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">13-Feb-24 03:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="1206946190747504720" id="message-1206946190747504720" title="Message sent: 13-Feb-24 03:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="errarx29660#0000">@DeADA</span> строгий за мат в чате</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">14-Feb-24 03:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="1207301997951324170" id="message-1207301997951324170" title="Message sent: 14-Feb-24 03:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> + устный за флуд в чате</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1207302202775969802" id="message-1207302202775969802" title="Message sent: 14-Feb-24 03:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="errarx29660#0000">@DeADA</span> + устный за игнор нарушения</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">14-Feb-24 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="1207388444515500122" id="message-1207388444515500122" title="Message sent: 14-Feb-24 09:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="henoheno.neko#0000">@поинт</span> беседа за мут навсегда по ошибке</span>
+
+                                <span class="chatlog__edited-timestamp" title="14-Feb-24 09:10 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-24 05:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="1208056574711431168" id="message-1208056574711431168" title="Message sent: 16-Feb-24 05:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="the_jigit#0000">@Мыхайло Мыхайлович</span>беседа, расслабился</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="middle_finger_tone2">
+                                <img class="emoji emoji--small" alt="&#128405;&#127996;" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/1f595-1f3fc-E3B21.svg">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-24 05:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="1208058499821600818" id="message-1208058499821600818" title="Message sent: 16-Feb-24 05:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="yomi.rein#0000">@Светлана Михайлова</span><span class="mention" title="473540#0000">@Казак Русланович</span><span class="mention" title="henoheno.neko#0000">@поинт</span><span class="mention" title="errarx29660#0000">@DeADA</span><span class="mention" title="phobos69_#0000">@Лжедмитрий</span>  поставлены на модерку</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="plus15">
+                                <img class="emoji emoji--small" alt="plus15" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/896677327470223390-6C833.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-24 05:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="1208064887910309929" id="message-1208064887910309929" title="Message sent: 16-Feb-24 05:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="_utils#0000">@_utils</span> снят псж</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1208065187899510824" id="message-1208065187899510824" title="Message sent: 16-Feb-24 05:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="jeff_0.0#0000">@jeff_0.0</span> вышел с сервера нах</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1208065215732654090" id="message-1208065215732654090" title="Message sent: 16-Feb-24 05:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ndetected#0000">@ndetected</span> снят реклама</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-24 06:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="1208078940569075742" id="message-1208078940569075742" title="Message sent: 16-Feb-24 06:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ndetected#0000">@ndetected</span> восстановлен на старшего</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-24 08:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="1208108801652424764" id="message-1208108801652424764" title="Message sent: 16-Feb-24 08:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="henoheno.neko#0000">@поинт</span> неактив до 29/02/24</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">17-Feb-24 07:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="1208445973723090965" id="message-1208445973723090965" title="Message sent: 17-Feb-24 07:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> беседа по рассмотрению предложений</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">18-Feb-24 07:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="1208815840078733314" id="message-1208815840078733314" title="Message sent: 18-Feb-24 07:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="willieremboboss#0000">@willieremboboss</span> устный нет нормы</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1208815864103706644" id="message-1208815864103706644" title="Message sent: 18-Feb-24 07:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="mr_frizz#0000">@Ежик</span> устный нет нормы</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1208815896957816863" id="message-1208815896957816863" title="Message sent: 18-Feb-24 07:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="mr_frizz#0000">@Ежик</span> 2 устных =&gt; строгий</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">25-Feb-24 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="1211065256277839882" id="message-1211065256277839882" title="Message sent: 25-Feb-24 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="dehydrator#0000">@премьер порн</span> устный по жалобе 
+
+1/2 0/2</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">25-Feb-24 05:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="1211325114117922827" id="message-1211325114117922827" title="Message sent: 25-Feb-24 05:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="yomi.rein#0000">@Светлана Михайлова</span> устный неактив</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1211325143176061029" id="message-1211325143176061029" title="Message sent: 25-Feb-24 05:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="473540#0000">@Казак Русланович</span> устный неактив</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1211325315637579786" id="message-1211325315637579786" title="Message sent: 25-Feb-24 05:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="errarx29660#0000">@DeADA</span> купон за актив</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">25-Feb-24 11:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="1211407766074429560" id="message-1211407766074429560" title="Message sent: 25-Feb-24 11:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="errarx29660#0000">@DeADA</span> строгий снят по купону</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">29-Feb-24 08:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="1212638244370653234" id="message-1212638244370653234" title="Message sent: 29-Feb-24 08:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="willieremboboss#0000">@willieremboboss</span> неактив до 11.03</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">29-Feb-24 08:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="1212818166133170266" id="message-1212818166133170266" title="Message sent: 29-Feb-24 08:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="user_name9995#0000">@user_name9995</span> беседа, нормально общайся</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">29-Feb-24 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="1212827087962906665" id="message-1212827087962906665" title="Message sent: 29-Feb-24 09:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ndetected#0000">@ndetected</span> строгий за тупизм + тупую причину мута</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1212827242011295794" id="message-1212827242011295794" title="Message sent: 29-Feb-24 09:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="errarx29660#0000">@DeADA</span> строгий за обсуждение и осуждение работы другой модерации (некст снятие)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">29-Feb-24 09:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="1212827564301754408" id="message-1212827564301754408" title="Message sent: 29-Feb-24 09:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="dehydrator#0000">@премьер порн</span> замена устного на строгий по жалобе</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1212828521869869096" id="message-1212828521869869096" title="Message sent: 29-Feb-24 09:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="user_name9995#0000">@user_name9995</span> снят псж</span>
+
+                                <span class="chatlog__edited-timestamp" title="29-Feb-24 09:27 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">29-Feb-24 11:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="1212858982771982386" id="message-1212858982771982386" title="Message sent: 29-Feb-24 11:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="mr_frizz#0000">@Ежик</span> неактив до 3,03</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/a_6e3e03f0f3e9930dbe46b2bebfcbe23e-A66F5.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mclalum#0000" data-user-id="743401956856561727" style="color: rgb(6,6,6)">Драк(он)?</span>
+
+
+        <span class="chatlog__timestamp">01-Mar-24 07:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="1213165537899843696" id="message-1213165537899843696" title="Message sent: 01-Mar-24 07:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="errarx29660#0000">@DeADA</span> снят , за размут участника без причины</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="1213165734822285332" id="message-1213165734822285332" title="Message sent: 01-Mar-24 07:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">+ чс</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%D0%9C%D0%BE%D1%80%D0%B6%20-%20%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20-%20%E2%8A%B0%F0%9F%91%BD%E2%8A%B1%E3%83%BB%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B-%D0%B0%D0%BF%D1%8B%20%5B1179781907404300348%5D.html_Files/df7f5d9065bca35a9d5da1a81134fd62-DCE6C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="the_jigit#0000" data-user-id="837945527512727592" style="color: rgb(25,252,112)">Мыхайло Мыхайлович</span>
+
+
+        <span class="chatlog__timestamp">01-Mar-24 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="1213176279461789758" id="message-1213176279461789758" title="Message sent: 01-Mar-24 08:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="c.e.o_of_playtime_co.#0000">@Генеральный Директор</span> строгий за слив модер инфы</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 98 message(s)</div>
+</div>
+
+</body>
+
+</html>
